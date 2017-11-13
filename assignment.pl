@@ -1,14 +1,16 @@
 
 %Definitions for isElementInList(El, List)
-isElementInList(X,[X|_]).
-isElementInList(X,[_|T]):- isElementInList([X|T]).
+isElementInList(El,[El|_]).
+isElementInList(El,[_|T]):- isElementInList(El,T).
 
 %Definitions for reverseList(List, ReversedList)
 reverseList([],[]).
-reverseList([H|T], ReversedList):-
-    reverseList(T, ReversedT), conc(ReversedT, [H], ReversedList).
+reverseList([H|T],ReversedList):- mergeLists(Reversed_List,[H],ReversedList),
+reverseList(T,Reversed_List).
 
 %insertElementIntoListEnd(El, List, NewList)
+insertElementIntoListEnd(El,[ ],[El]).
+insertElementIntoListEnd(El,[H|T],[H|NewList]) :- insertElementIntoListEnd(El,T,NewList).
 
 %Definitions for mergeLists(List1, List2, Merged)
 mergeLists([], List2, List2).
